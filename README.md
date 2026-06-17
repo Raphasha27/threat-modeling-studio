@@ -33,3 +33,33 @@ Defensive security tool. See [SECURITY.md](SECURITY.md).
 ## Author
 
 **Koketso Raphasha** — Full-Stack Developer, AI Engineer, Cybersecurity Enthusiast
+
+## Ethical Use Notice
+
+This tool is built strictly for **educational and defensive cybersecurity purposes**.
+
+It must only be used in:
+- Controlled lab environments
+- Authorized systems
+- Security research contexts
+
+**Unauthorized use is strictly prohibited.**
+## Deployment & Architecture
+
+This project is designed with cloud-ready principles:
+
+- **Containerized** using Docker for consistent deployment
+- **Environment-based configuration** — no hardcoded secrets
+- **Modular structure** for independent scaling
+- **Stateless design** where applicable
+- **Separation of concerns** for maintainability
+
+### Run Locally
+
+`ash
+docker-compose up --build
+`
+
+---
+
+*Part of the Kirov Dynamics Technology portfolio — backend engineering focused on security, scalability, and system design.*
