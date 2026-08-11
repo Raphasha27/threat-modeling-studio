@@ -77,3 +77,14 @@ docker-compose up --build
 ---
 
 *Part of the Kirov Dynamics Technology portfolio — backend engineering focused on security, scalability, and system design.*
+
+## Contributors
+
+Built and maintained by the **Kirov Dynamics** team:
+
+- [Raphasha27](https://github.com/Raphasha27) - Project lead & maintainer
+- [KirovDynamicsTechnology](https://github.com/KirovDynamicsTechnology) - Kirov Dynamics (company group)
+- [DkMash](https://github.com/DkMash) - Teammate & co-developer
+- [LindiweMotaung](https://github.com/LindiweMotaung) - Collaborator
+
+We build together - credit goes to the whole team, not one person.
