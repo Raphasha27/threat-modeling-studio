@@ -63,3 +63,8 @@ docker-compose up --build
 ---
 
 *Part of the Kirov Dynamics Technology portfolio — backend engineering focused on security, scalability, and system design.*
+
+
+## Usage Instructions
+Framework detected: Python
+Open the HTML files directly in your browser or run a simple local web server (e.g. `npx serve` or `python -m http.server`).
