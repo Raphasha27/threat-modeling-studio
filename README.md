@@ -13,6 +13,20 @@ A collaborative threat modeling platform for security teams. Perform STRIDE anal
 - **Collaboration** — Multi-user workspace
 - **Export** — Generate threat model reports
 
+
+## Architecture
+
+```mermaid
+graph LR
+    USER[User] --> API[FastAPI]
+    API --> PROC[Processor]
+    PROC --> DB[(Database)]
+    API --> AUTH[Auth Layer]
+    PROC --> AI[AI/ML Engine]
+```
+
+Microservices-based architecture with API Gateway, authentication layer, PostgreSQL persistence, and event-driven communication.
+
 ## Tech Stack
 
 - **Backend:** FastAPI (Python)
