@@ -1,5 +1,7 @@
 """Pydantic models for Threat Modeling Studio."""
+
 from datetime import datetime
+
 from pydantic import BaseModel
 
 
