@@ -1,13 +1,14 @@
+[![CI](https://github.com/Raphasha27/threat-modeling-studio/actions/workflows/ci.yml/badge.svg)](https://github.com/Raphasha27/threat-modeling-studio/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 # Threat Modeling Studio
 
 ### Collaborative STRIDE Threat Analysis Platform
 
 <div align="center">
 
-[![CI](https://github.com/koketseraphasha/threat-modeling-studio/actions/workflows/ci.yml/badge.svg)](https://github.com/koketseraphasha/threat-modeling-studio/actions/workflows/ci.yml)
 ![Python](https://img.shields.io/badge/Python-3.12-3776AB?style=flat-square&logo=python&logoColor=white)
 ![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=flat-square&logo=fastapi&logoColor=white)
-![License](https://img.shields.io/badge/License-MIT-a78bfa?style=flat-square)
 
 </div>
 
