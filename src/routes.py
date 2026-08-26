@@ -1,6 +1,6 @@
 """Threat modeling routes."""
 
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 from fastapi import APIRouter
 
@@ -18,7 +18,7 @@ async def list_models():
             methodology="STRIDE",
             risk_rating="high",
             description="Threat model for customer-facing web application",
-            created_at=datetime.now(timezone.utc),
+            created_at=datetime.now(UTC),
         ),
     ]
 
