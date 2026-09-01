@@ -67,6 +67,7 @@ def build_attack_tree(entries: list[StrideEntry]) -> dict[str, list[StrideEntry]
 # Tests – risk classification
 # ---------------------------------------------------------------------------
 
+
 class TestClassifyRisk:
     @pytest.mark.parametrize(
         ("score", "expected"),
@@ -116,12 +117,16 @@ class TestComputeOverallRisk:
 # Tests – trust boundary analysis
 # ---------------------------------------------------------------------------
 
+
 class TestTrustBoundaryFlows:
     def test_no_boundaries(self):
         flows = [
             DataFlow(
-                id="1", source="A", destination="B",
-                protocol="HTTP", data_classification="internal",
+                id="1",
+                source="A",
+                destination="B",
+                protocol="HTTP",
+                data_classification="internal",
             ),
         ]
         assert find_trust_boundary_flows(flows) == []
@@ -129,13 +134,19 @@ class TestTrustBoundaryFlows:
     def test_one_boundary(self):
         flows = [
             DataFlow(
-                id="1", source="A", destination="B",
-                protocol="HTTP", data_classification="internal",
+                id="1",
+                source="A",
+                destination="B",
+                protocol="HTTP",
+                data_classification="internal",
                 trust_boundary=False,
             ),
             DataFlow(
-                id="2", source="External", destination="Internal",
-                protocol="HTTPS", data_classification="sensitive",
+                id="2",
+                source="External",
+                destination="Internal",
+                protocol="HTTPS",
+                data_classification="sensitive",
                 trust_boundary=True,
             ),
         ]
@@ -148,16 +159,23 @@ class TestTrustBoundaryFlows:
 # Tests – attack surface
 # ---------------------------------------------------------------------------
 
+
 class TestAttackSurface:
     def test_unique_endpoints(self):
         flows = [
             DataFlow(
-                id="1", source="Browser", destination="API",
-                protocol="HTTPS", data_classification="sensitive",
+                id="1",
+                source="Browser",
+                destination="API",
+                protocol="HTTPS",
+                data_classification="sensitive",
             ),
             DataFlow(
-                id="2", source="API", destination="DB",
-                protocol="TCP", data_classification="internal",
+                id="2",
+                source="API",
+                destination="DB",
+                protocol="TCP",
+                data_classification="internal",
             ),
         ]
         surface = attack_surface(flows)
@@ -166,12 +184,18 @@ class TestAttackSurface:
     def test_overlapping_endpoints(self):
         flows = [
             DataFlow(
-                id="1", source="API", destination="DB",
-                protocol="TCP", data_classification="internal",
+                id="1",
+                source="API",
+                destination="DB",
+                protocol="TCP",
+                data_classification="internal",
             ),
             DataFlow(
-                id="2", source="API", destination="Cache",
-                protocol="TCP", data_classification="internal",
+                id="2",
+                source="API",
+                destination="Cache",
+                protocol="TCP",
+                data_classification="internal",
             ),
         ]
         surface = attack_surface(flows)
@@ -184,6 +208,7 @@ class TestAttackSurface:
 # ---------------------------------------------------------------------------
 # Tests – attack tree construction
 # ---------------------------------------------------------------------------
+
 
 class TestAttackTree:
     def test_groups_by_category(self):
@@ -214,6 +239,7 @@ class TestAttackTree:
 # ---------------------------------------------------------------------------
 # Tests – threat model lifecycle
 # ---------------------------------------------------------------------------
+
 
 class TestThreatModelLifecycle:
     def _make_model(self, risk="medium"):

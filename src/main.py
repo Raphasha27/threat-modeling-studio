@@ -26,7 +26,10 @@ app = FastAPI(
         "url": "https://opensource.org/licenses/MIT",
     },
     openapi_tags=[
-        {"name": "threats", "description": "Threat model listing, STRIDE analysis, and data flow mapping"},
+        {
+            "name": "threats",
+            "description": "Threat model listing, STRIDE analysis, and data flow mapping",
+        },
         {"name": "Health", "description": "Service health checks"},
     ],
 )
