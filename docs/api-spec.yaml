@@ -1,0 +1,196 @@
+openapi: 3.0.3
+info:
+  title: Threat Modeling Studio
+  description: |
+    STRIDE-based threat modeling API for systematically identifying and
+    cataloguing security threats in software architectures.
+  version: 0.1.0
+  contact:
+    name: Threat Modeling Studio Support
+    url: https://github.com/Raphasha27/threat-modeling-studio
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+
+servers:
+  - url: http://localhost:8000
+    description: Local development server
+
+tags:
+  - name: threats
+    description: Threat model listing, STRIDE analysis, and data flow mapping
+  - name: Health
+    description: Service health checks
+
+paths:
+  /:
+    get:
+      tags: [Health]
+      summary: Service info
+      operationId: rootInfo
+      responses:
+        "200":
+          description: Service status
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  service:
+                    type: string
+                    example: threat-modeling-studio
+                  status:
+                    type: string
+                    example: running
+                  version:
+                    type: string
+                    example: "0.1.0"
+
+  /health:
+    get:
+      tags: [Health]
+      summary: Health check
+      operationId: healthCheck
+      responses:
+        "200":
+          description: Service is healthy
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: healthy
+
+  /api/v1/models:
+    get:
+      tags: [threats]
+      summary: List threat models
+      description: Retrieve all available threat model definitions.
+      operationId: listModels
+      responses:
+        "200":
+          description: List of threat models
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ThreatModel"
+
+  /api/v1/models/{model_id}/stride:
+    get:
+      tags: [threats]
+      summary: Get STRIDE analysis
+      description: Retrieve STRIDE threat entries for a specific threat model.
+      operationId: getStride
+      parameters:
+        - name: model_id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Threat model ID
+          example: TM-001
+      responses:
+        "200":
+          description: STRIDE entries
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/StrideEntry"
+
+  /api/v1/models/{model_id}/flows:
+    get:
+      tags: [threats]
+      summary: Get data flows
+      description: Retrieve data flow diagrams for a specific threat model.
+      operationId: getDataFlows
+      parameters:
+        - name: model_id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Threat model ID
+          example: TM-001
+      responses:
+        "200":
+          description: Data flow entries
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/DataFlow"
+
+components:
+  schemas:
+    ThreatModel:
+      type: object
+      properties:
+        id:
+          type: string
+          example: TM-001
+        name:
+          type: string
+          example: Web Application Threat Model
+        methodology:
+          type: string
+          enum: [STRIDE, PASTA, VAST]
+          example: STRIDE
+        risk_rating:
+          type: string
+          enum: [critical, high, medium, low]
+          example: high
+        description:
+          type: string
+          example: Threat model for customer-facing web application
+        created_at:
+          type: string
+          format: date-time
+
+    StrideEntry:
+      type: object
+      properties:
+        category:
+          type: string
+          enum: [Spoofing, Tampering, Repudiation, Information Disclosure, Denial of Service, Elevation of Privilege]
+          example: Spoofing
+        threat:
+          type: string
+          example: Attacker impersonates legitimate user via stolen session token
+        mitigation:
+          type: string
+          example: Implement MFA and short-lived JWT tokens
+        risk_score:
+          type: integer
+          minimum: 1
+          maximum: 10
+          example: 8
+
+    DataFlow:
+      type: object
+      properties:
+        id:
+          type: string
+          example: DF-01
+        source:
+          type: string
+          example: Browser
+        destination:
+          type: string
+          example: API Gateway
+        protocol:
+          type: string
+          example: HTTPS
+        data_classification:
+          type: string
+          enum: [public, internal, confidential, sensitive]
+          example: sensitive
+        trust_boundary:
+          type: boolean
+          example: true
